@@ -1,6 +1,6 @@
 Redmine::Plugin.register :redmine_default_queries do
   name 'Redmine Default Queries plugin'
-  author 'Jérémie Augustin'
+  author 'Jeremie Augustin'
   description 'Allow to setup default query per project you need to add a query_id custom field'
   version '0.0.1'
   
