@@ -24,19 +24,17 @@ module QueryPerProject
           #end
           #
           
-          if params[:query_id].blank? && (api_request? || params[:set_filter] || session[:query].nil? ||
+          if !@project.nil? && params[:query_id].blank? && (api_request? || params[:set_filter] || session[:query].nil? ||
              session[:query][:project_id] != (@project ? @project.id : nil) ||
              session[:query][:column_names].nil? )
          #   get_default_query
          
-             cv=@project.custom_values.detect do |custom_value|
-               true if custom_value.custom_field.name == "query_id" && !custom_value.value.blank?
-             end
-             #query_id = ( cv ? cv.value.to_s.strip : QPP_Constants::PROJECT_DEFAULT_SUFFIX )
+            cv=@project.custom_values.detect do |custom_value|
+              true if custom_value.custom_field.name == "query_id" && !custom_value.value.blank?
+            end
+            #query_id = ( cv ? cv.value.to_s.strip : QPP_Constants::PROJECT_DEFAULT_SUFFIX )
              
-             query_id = cv.value.to_s.strip unless cv.blank? 
-
-            print "test #{query_id}"
+            query_id = cv.value.to_s.strip unless cv.blank?
             
             params[:query_id] = query_id unless query_id.blank?
 
